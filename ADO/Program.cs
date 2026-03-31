@@ -1,8 +1,10 @@
 ﻿using ADO;
 using System;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+
 namespace PV_522_ADO
 {
 
@@ -11,11 +13,12 @@ namespace PV_522_ADO
 		
 		static void Main(string[] args)
 		{
-			string contnection_string = "Data Source=DESKTOP-FHF0PU1\\SQLEXPRESS;Initial Catalog=Movies_PV_522;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			//string contnection_string = "Data Source=DESKTOP-FHF0PU1\\SQLEXPRESS;Initial Catalog=Movies_PV_522;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			string contnection_string = ConfigurationManager.ConnectionStrings["Movies"].ConnectionString;
 			Connector connector = new Connector(contnection_string);
 
 			connector.Select("SELECT * FROM Directors");
-			connector.Select("title, first_name,last_name","Movies,Directors", "director=dorector_id");
+			connector.Select("title, first_name,last_name","Movies,Directors", "director=director_id");
 			//Console.WriteLine(contnection_string);
 			//connection = new SqlConnection(contnection_string);
 
