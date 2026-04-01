@@ -19,6 +19,13 @@ namespace PV_522_ADO
 
 			connector.Select("SELECT * FROM Directors");
 			connector.Select("title, first_name,last_name","Movies,Directors", "director=director_id");
+
+			// Получаем следующий ID
+			int nextId = Convert.ToInt32(connector.Scalar("SELECT ISNULL(MAX(director_id), 0) + 1 FROM Directors"));
+			Console.WriteLine("\n=== ДОБАВЛЯЕМ НОВОГО РЕЖИССЕРА ===");
+			connector.Insert("director_id, first_name, last_name", "Directors",$"{nextId}, 'Gay', 'Ritchie'");
+			connector.Select("SELECT * FROM Directors");
+
 			//Console.WriteLine(contnection_string);
 			//connection = new SqlConnection(contnection_string);
 
@@ -28,6 +35,6 @@ namespace PV_522_ADO
 			//Select("title,realise_date,first_name,last_name", "Movies,Directors" , "director=director_id");
 		}
 
-		
+
 	}
 }

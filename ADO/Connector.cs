@@ -67,5 +67,21 @@ namespace ADO
 			connection.Close();
 			return value;
 		}
+		public void Insert(string fields, string tableName, string values)
+		{
+			// Формируем SQL команду
+			string cmd = $"INSERT INTO {tableName} ({fields}) VALUES ({values})";
+
+			// Создаем объект команды
+			SqlCommand command = new SqlCommand(cmd, connection);
+
+			// Выполняем вставку
+			connection.Open();
+			command.ExecuteNonQuery();
+			connection.Close();
+
+			Console.WriteLine("Данные успешно добавлены!");
+		}
+
 	}
 }
