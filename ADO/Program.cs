@@ -17,8 +17,16 @@ namespace PV_522_ADO
 			string contnection_string = ConfigurationManager.ConnectionStrings["Movies"].ConnectionString;
 			Connector connector = new Connector(contnection_string);
 
+
+			Console.WriteLine(connector.GetPrimaryKeyColumnName("Movies"));
+			Console.WriteLine(connector.GetNextPrimaryKey("Movies"));
+			connector.Insert($"INSERT Directors(director_id,first_name,last_name)VALUES({connector.GetNextPrimaryKey("Directors")},N'Peter', N'Jackson')");
+
+
+			//connector.Insert("INSERT Directors(director_id,first_name,last_name)VALUES(7,N'The', N'Wachowskis')");
+
 			connector.Select("SELECT * FROM Directors");
-			connector.Select("title, first_name,last_name","Movies,Directors", "director=director_id");
+			connector.Select("movie_id,title, first_name,last_name","Movies,Directors", "director=director_id");
 			//Console.WriteLine(contnection_string);
 			//connection = new SqlConnection(contnection_string);
 

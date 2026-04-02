@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Xml.Serialization;
 namespace ADO
 {
 	
@@ -66,6 +67,39 @@ namespace ADO
 			value = command.ExecuteScalar();
 			connection.Close();
 			return value;
+		}
+
+		public string GetPrimaryKeyColumnName(string Table)
+		{
+			string cmd = $@"
+SELECT	COLUMN_NAME FROM INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE
+WHERE	CONSTRAINT_NAME=
+(
+SELECT	CONSTRAINT_NAME 
+FROM	INFORMATION_SCHEMA.TABLE_CONSTRAINTS 
+WHERE	TABLE_NAME=N'{Table}'
+AND		CONSTRAINT_TYPE=N'PRIMARY KEY'
+);
+";
+			return Scalar(cmd).ToString();
+		}
+
+		public int GetLastPrimayKey(string table)
+		{
+			return (int)Scalar($"SELECT MAX({GetPrimaryKeyColumnName(table)}) FROM {table}");
+		}
+
+		public int GetNextPrimaryKey(string table)
+		{
+			return GetLastPrimayKey(table) + 1;
+		}
+
+		public void Insert(string cmd)
+		{
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+			command.ExecuteNonQuery();
+			connection.Close();
 		}
 	}
 }
