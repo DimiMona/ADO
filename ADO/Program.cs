@@ -22,10 +22,15 @@ namespace PV_522_ADO
 
 			// Получаем следующий ID
 			int nextId = Convert.ToInt32(connector.Scalar("SELECT ISNULL(MAX(director_id), 0) + 1 FROM Directors"));
-			Console.WriteLine("\n=== ДОБАВЛЯЕМ НОВОГО РЕЖИССЕРА ===");
-			connector.Insert("director_id, first_name, last_name", "Directors",$"{nextId}, 'Gay', 'Ritchie'");
-			connector.Select("SELECT * FROM Directors");
+			//Console.WriteLine("\n=== ДОБАВЛЯЕМ НОВОГО РЕЖИССЕРА ===");
+			//connector.Insert("director_id, first_name, last_name", "Directors",$"{nextId}, 'Gay', 'Ritchie'");
+			//connector.Select("SELECT * FROM Directors");
 
+			Console.WriteLine("\n=====================================================================================\n");
+			nextId = Convert.ToInt32(connector.Scalar("SELECT ISNULL(MAX(movie_id), 0) + 1 FROM Movies"));
+			connector.Insert("movie_id,title,realise_date, director", "Movies", $"{nextId}, 'The Matrix', '1991.03.31', 1" );
+			connector.Select("title, first_name,last_name", "Movies,Directors", "director=director_id");
+			Console.WriteLine("\n=== ДОБАВЛЯЕМ НОВОГО РЕЖИССЕРА ===");
 			//Console.WriteLine(contnection_string);
 			//connection = new SqlConnection(contnection_string);
 
