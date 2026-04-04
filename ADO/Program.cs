@@ -20,8 +20,23 @@ namespace PV_522_ADO
 
 			Console.WriteLine(connector.GetPrimaryKeyColumnName("Movies"));
 			Console.WriteLine(connector.GetNextPrimaryKey("Movies"));
-			connector.Insert($"INSERT Directors(director_id,first_name,last_name)VALUES({connector.GetNextPrimaryKey("Directors")},N'Peter', N'Jackson')");
-
+			
+			while(true)
+			{
+				Console.WriteLine("Введите Имя режисера");
+				var firstName = Console.ReadLine();
+				Console.WriteLine("Введите Фамилию режисера");
+				var lastName = Console.ReadLine();
+				if (!connector.Validation(firstName, lastName))
+				{
+					connector.Insert($"INSERT Directors(director_id,first_name,last_name)VALUES({connector.GetNextPrimaryKey("Directors")},N'{firstName}', N'{lastName}')");
+					break;
+				}
+				else
+				{
+					Console.WriteLine($"Данный режисер уже есть!");
+				}
+			}
 
 			//connector.Insert("INSERT Directors(director_id,first_name,last_name)VALUES(7,N'The', N'Wachowskis')");
 

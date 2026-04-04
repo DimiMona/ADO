@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Xml.Serialization;
+using System.Xml.Schema;
 namespace ADO
 {
 	
@@ -100,6 +101,18 @@ AND		CONSTRAINT_TYPE=N'PRIMARY KEY'
 			connection.Open();
 			command.ExecuteNonQuery();
 			connection.Close();
+		}
+		public bool Validation (string firstName, string lastName)
+		{
+			string valid = $"SELECT COUNT(*) FROM Directors WHERE first_name = @firstName AND last_name = @lastName";
+
+			connection.Open();
+			SqlCommand validCommand = new SqlCommand(valid, connection);
+			validCommand.Parameters.AddWithValue("@firstName", firstName);
+			validCommand.Parameters.AddWithValue("@lastName", lastName);
+			int count = (int)validCommand.ExecuteScalar();
+			connection.Close();
+			return count > 0;
 		}
 	}
 }
