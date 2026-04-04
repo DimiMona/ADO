@@ -20,8 +20,13 @@ namespace PV_522_ADO
 
 			Console.WriteLine(connector.GetPrimaryKeyColumnName("Movies"));
 			Console.WriteLine(connector.GetNextPrimaryKey("Movies"));
-			connector.Insert($"INSERT Directors(director_id,first_name,last_name)VALUES({connector.GetNextPrimaryKey("Directors")},N'Peter', N'Jackson')");
-
+			//connector.Insert($"INSERT Directors(director_id,first_name,last_name)VALUES({connector.GetNextPrimaryKey("Directors")},N'Peter', N'Jackson')");
+			connector.Insert
+				(
+				"Directors", 
+				"director_id,first_name,last_name", 
+				$"{connector.GetNextPrimaryKey("Directors")},N'Sheldon',N'Letich'"
+				);
 
 			//connector.Insert("INSERT Directors(director_id,first_name,last_name)VALUES(7,N'The', N'Wachowskis')");
 

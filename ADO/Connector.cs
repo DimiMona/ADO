@@ -16,6 +16,7 @@ namespace ADO
 			connection = new SqlConnection(connection_string);
 			Console.WriteLine(connection.ConnectionString);
 		}
+
 		public void Select(string cmd)
 		{
 			SqlCommand command = new SqlCommand(cmd, connection);
@@ -53,12 +54,14 @@ namespace ADO
 			reader.Close();
 			connection.Close();
 		}
+
 		public void Select(string fields, string tables, string condition = "")
 		{
 			string cmd = $"SELECT {fields} FROM {tables}";
 			if (condition != "") cmd += $" WHERE {condition}";
 			Select(cmd);
 		}
+
 		public object Scalar(string cmd)
 		{
 			object value = null;
@@ -100,6 +103,21 @@ AND		CONSTRAINT_TYPE=N'PRIMARY KEY'
 			connection.Open();
 			command.ExecuteNonQuery();
 			connection.Close();
+		}
+
+		public void Insert(string table, string fields, string values)
+		{
+			string[] split_fields = fields.Split(',');
+			string[] split_values = values.Split(',');
+			if (split_fields.Length != split_values.Length) return;
+			string condition = "";
+			for (int i = 1; i < split_values.Length; i++)
+			{
+				condition += $"{split_fields[i]}={split_values[i]}";
+				if (i != split_values.Length - 1) condition += " AND ";
+			}
+			if (Scalar($"SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition} ") != null) return;
+			Insert($"INSERT {table}({fields}) VALUES ({values})");
 		}
 	}
 }
