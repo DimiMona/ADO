@@ -21,11 +21,15 @@ namespace DLLcheck
 				"Movies,Directors",
 				"director=director_id"
 				);
-			Connector connectorAcademy = new Connector
-				(
-				ConfigurationManager.ConnectionStrings["PV_522_Import"].ConnectionString
-				);
-			connectorAcademy.Select("*", "Disciplines");
+			connector.Update("UPDATE Directors SET first_name = N'Энги', last_name = N'Бердс' WHERE director_id = 1");
+			connector.Select("*", "Directors");
+			//Connector connectorAcademy = new Connector
+			//	(
+			//	ConfigurationManager.ConnectionStrings["PV_522_Import"].ConnectionString
+			//	);
+			//connectorAcademy.Select("*", "Disciplines");
+			
+			
 		}
 	}
 }

@@ -118,5 +118,25 @@ AND		CONSTRAINT_TYPE=N'PRIMARY KEY'
 			if (Scalar($"SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition} ") != null) return;
 			Insert($"INSERT {table}({fields}) VALUES ({values})");
 		}
+		public void Update(string cmd)
+		{
+			try
+			{
+				SqlCommand command = new SqlCommand(cmd, connection);
+				connection.Open();
+				int rowsAffected = command.ExecuteNonQuery();
+				connection.Close();
+
+				if (rowsAffected > 0)
+					Console.WriteLine($"✅ Обновлено {rowsAffected} строк(а)");
+				else
+					Console.WriteLine("⚠️ Ни одной строки не обновлено");
+			}
+			catch (SqlException ex)
+			{
+				Console.WriteLine($"❌ Ошибка UPDATE: {ex.Message}");
+				connection.Close();
+			}
+		}
 	}
 }
