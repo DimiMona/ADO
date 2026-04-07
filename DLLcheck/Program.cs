@@ -21,7 +21,7 @@ namespace DLLcheck
 				"Movies,Directors",
 				"director=director_id"
 				);
-			connector.Update("UPDATE Directors SET first_name = N'Энги', last_name = N'Бердс' WHERE director_id = 1");
+			connector.Update("UPDATE Directors SET first_name = N'123', last_name = N'123' WHERE director_id = 1");
 			connector.Select("*", "Directors");
 			//Connector connectorAcademy = new Connector
 			//	(
