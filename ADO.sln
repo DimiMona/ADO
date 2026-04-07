@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBtools", "DBtools\DBtools.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLcheck", "DLLcheck\DLLcheck.csproj", "{D2036214-ACFB-4B2B-AD34-E67B473CE2BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{C95493CD-5812-4110-93E7-405F6DD171FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D2036214-ACFB-4B2B-AD34-E67B473CE2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2036214-ACFB-4B2B-AD34-E67B473CE2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2036214-ACFB-4B2B-AD34-E67B473CE2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C95493CD-5812-4110-93E7-405F6DD171FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C95493CD-5812-4110-93E7-405F6DD171FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C95493CD-5812-4110-93E7-405F6DD171FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C95493CD-5812-4110-93E7-405F6DD171FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
