@@ -16,8 +16,12 @@ namespace DLLcheck
 				(
 				ConfigurationManager.ConnectionStrings["Movies_PV_522"].ConnectionString
 				);
+			connector.Update("UPDATE Directors SET last_name=N'Taqtaren' WHERE director_id=8");
+
+			connector.Update("Directors", "first_name,last_name", "James , Cameron", "director_id=9");
 			connector.Select("*", "Directors");
-			connector.Select("title,realise_date,first_name,last_name",
+			connector.Select(
+				"title,realise_date,first_name,last_name",
 				"Movies,Directors",
 				"director=director_id"
 				);

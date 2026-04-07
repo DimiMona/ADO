@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DBtools
 {
-    public class Connector
-    {
+	public class Connector
+	{
 		SqlConnection connection;
 		public Connector(string connection_string)
 		{
@@ -117,6 +117,38 @@ AND		CONSTRAINT_TYPE=N'PRIMARY KEY'
 			}
 			if (Scalar($"SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition} ") != null) return;
 			Insert($"INSERT {table}({fields}) VALUES ({values})");
+		}
+
+		public void Update(string cmd)
+		{
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+			command.ExecuteNonQuery();
+			connection.Close();
+		}
+		public void Update(string table, string fields, string values, string condition)
+		{
+			string[] s_fields = fields.Split(',');
+			string[] s_values = values.Split(',');
+			if (s_fields.Length != s_values.Length) return;
+			string parsed = " ";
+			for (int i = 0; i < s_fields.Length; i++)
+			{
+				parsed += $"{s_fields[i]}={ParseValue(s_values[i])}";
+				if (i != s_values.Length - 1) parsed += ",";
+			}
+			var cmd = $"UPDATE {table} SET {parsed} WHERE {condition}";
+			if(Scalar($"SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {parsed.Replace(",", " AND ")} ") == null)
+			Update(cmd);
+		}
+		string ParseValue(string value)
+		{
+			if (value.Length > 1)
+			{
+				value = value.Trim();//мутод Trim() удаляет пробелы в начале и в конце сьроки
+				if (value[0] != 'N' && value[1] != '\'') value = $"N'{value}'";
+			}
+			return value;
 		}
 	}
 }
