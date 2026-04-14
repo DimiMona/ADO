@@ -189,6 +189,7 @@
 			// 
 			// buttonOk
 			// 
+			this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonOk.Location = new System.Drawing.Point(318, 315);
 			this.buttonOk.Name = "buttonOk";
@@ -196,6 +197,7 @@
 			this.buttonOk.TabIndex = 14;
 			this.buttonOk.Text = "Ок";
 			this.buttonOk.UseVisualStyleBackColor = true;
+			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
 			// buttonCancel
 			// 
