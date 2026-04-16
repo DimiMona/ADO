@@ -32,7 +32,8 @@ namespace Academy
 		private void buttonAddStudents_Click(object sender, EventArgs e)
 		{
 			StudentForm student = new StudentForm();
-			student.ShowDialog();
+			//student.ShowDialog();
+			if (student.ShowDialog() == DialogResult.OK) tabControl_SelectedIndexChanged(tabControl, null);
 		}
 
 		private void dgvStudents_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
