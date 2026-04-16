@@ -31,6 +31,13 @@ namespace Academy.Models
 			this.rate = rate;
 		}
 
+		public Teacher(object[] values) : base(values)
+		{
+			this.work_since = work_since[8].ToString();
+			this.rate = Convert.ToDecimal(values[9].ToString());
+
+		}
+
 		public override string GetNames()
 		{
 			return base.GetNames() + ",work_since,rate";

@@ -33,25 +33,36 @@ namespace Academy.Models
 		 Image photo
 			)
 		{
-			this.id = id;
-			this.last_name = last_name;
-			this.first_name = first_name;
-			this.middle_name = middle_name;
-			this.birth_date = birth_date;
-			this.email = email;
-			this.phone = phone;
-			this.photo = photo;
+			this.id				= id;
+			this.last_name		= last_name;
+			this.first_name		= first_name;
+			this.middle_name	= middle_name;
+			this.birth_date		= birth_date;
+			this.email			= email;
+			this.phone			= phone;
+			this.photo			= photo;
+		}
+		public Human(object[] values)
+		{
+			id			= Convert.ToInt32(values[0]);
+			last_name	= values[1].ToString();
+			first_name	= values[2].ToString();
+			middle_name = values[3].ToString();
+			birth_date	= values[4].ToString();
+			email		= values[5].ToString(); 
+			phone		= values[6].ToString();
+
 		}
 		public Human(Human other)
 		{
-			this.id = other.id;
-			this.last_name = other.last_name;
-			this.first_name = other.first_name;
-			this.middle_name = other.middle_name;
-			this.birth_date = other.birth_date;
-			this.email = other.email;
-			this.phone = other.phone;
-			this.photo = other.photo;
+			this.id				= other.id;
+			this.last_name		= other.last_name;
+			this.first_name		= other.first_name;
+			this.middle_name	= other.middle_name;
+			this.birth_date		= other.birth_date;
+			this.email			= other.email;
+			this.phone			= other.phone;
+			this.photo			= other.photo;
 		}
 		public virtual string GetNames()
 		{
@@ -64,7 +75,7 @@ namespace Academy.Models
 		public virtual string GetUpdateString()
 		{
 			return $"last_name = N'{last_name}'," +
-					$"first_name = N'{first_name}'" +
+					$"first_name = N'{first_name}'," +
 					$"middle_name = N'{middle_name}'," +
 					$"birth_date = N'{birth_date}'," +
 					$"email = N'{email}'," +

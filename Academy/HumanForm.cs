@@ -33,6 +33,18 @@ namespace Academy
 				pictureBoxPhoto.Image
 				);
 		}
+
+		protected virtual void Extract()
+		{
+			labelID.Text = $"ID:{human.id}";
+			textBoxLastName.Text = human.last_name;
+			textBoxFirstName.Text = human.first_name;
+			textBoxMiddleName.Text = human.middle_name;
+			dtpBirthDate.Value =Convert.ToDateTime(human.birth_date);
+			textBoxEmail.Text = human.email;
+			textBoxPhone.Text = human.phone;
+		}
+
 		protected virtual void buttonOk_Click(object sender, EventArgs e)
 		{
 			Compress();

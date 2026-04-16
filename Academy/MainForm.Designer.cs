@@ -31,6 +31,7 @@
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageStudents = new System.Windows.Forms.TabPage();
+			this.buttonAddStudents = new System.Windows.Forms.Button();
 			this.dgvStudents = new System.Windows.Forms.DataGridView();
 			this.tabPageGroups = new System.Windows.Forms.TabPage();
 			this.dgvGroups = new System.Windows.Forms.DataGridView();
@@ -40,7 +41,6 @@
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dgvTeachers = new System.Windows.Forms.DataGridView();
-			this.buttonAddStudents = new System.Windows.Forms.Button();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -75,6 +75,7 @@
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(801, 423);
 			this.tabControl.TabIndex = 1;
+			this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
 			// 
 			// tabPageStudents
 			// 
@@ -88,6 +89,16 @@
 			this.tabPageStudents.Text = "Students";
 			this.tabPageStudents.UseVisualStyleBackColor = true;
 			// 
+			// buttonAddStudents
+			// 
+			this.buttonAddStudents.Location = new System.Drawing.Point(689, 0);
+			this.buttonAddStudents.Name = "buttonAddStudents";
+			this.buttonAddStudents.Size = new System.Drawing.Size(98, 28);
+			this.buttonAddStudents.TabIndex = 2;
+			this.buttonAddStudents.Text = "Добавить";
+			this.buttonAddStudents.UseVisualStyleBackColor = true;
+			this.buttonAddStudents.Click += new System.EventHandler(this.buttonAddStudents_Click);
+			// 
 			// dgvStudents
 			// 
 			this.dgvStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -95,9 +106,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvStudents.Location = new System.Drawing.Point(3, 28);
+			this.dgvStudents.MultiSelect = false;
 			this.dgvStudents.Name = "dgvStudents";
+			this.dgvStudents.ReadOnly = true;
+			this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvStudents.Size = new System.Drawing.Size(786, 353);
 			this.dgvStudents.TabIndex = 1;
+			this.dgvStudents.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStudents_CellMouseDoubleClick);
 			// 
 			// tabPageGroups
 			// 
@@ -186,16 +201,6 @@
 			this.dgvTeachers.Name = "dgvTeachers";
 			this.dgvTeachers.Size = new System.Drawing.Size(786, 366);
 			this.dgvTeachers.TabIndex = 1;
-			// 
-			// buttonAddStudents
-			// 
-			this.buttonAddStudents.Location = new System.Drawing.Point(689, 0);
-			this.buttonAddStudents.Name = "buttonAddStudents";
-			this.buttonAddStudents.Size = new System.Drawing.Size(98, 28);
-			this.buttonAddStudents.TabIndex = 2;
-			this.buttonAddStudents.Text = "Добавить";
-			this.buttonAddStudents.UseVisualStyleBackColor = true;
-			this.buttonAddStudents.Click += new System.EventHandler(this.buttonAddStudents_Click);
 			// 
 			// MainForm
 			// 

@@ -15,6 +15,7 @@ namespace Academy
 	public partial class MainForm : Form
 	{
 		Connector connector;
+		DataGridView[] tables;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -25,13 +26,26 @@ namespace Academy
 			dgvDisciplines.DataSource = connector.Select("SELECT * FROM Disciplines");
 			dgvTeachers.DataSource = connector.Select("SELECT * FROM Teachers");
 			
-			
+			tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers};
 		}
 
 		private void buttonAddStudents_Click(object sender, EventArgs e)
 		{
 			StudentForm student = new StudentForm();
 			student.ShowDialog();
+		}
+
+		private void dgvStudents_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			int id = Convert.ToInt32(dgvStudents.Rows[e.RowIndex].Cells[0].Value);
+			StudentForm form = new StudentForm(id);
+			if (form.ShowDialog() == DialogResult.OK) tabControl_SelectedIndexChanged(tabControl, null);
+		}
+
+		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int i = (sender as TabControl).SelectedIndex;
+			tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
 		}
 	}
 }
