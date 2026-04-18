@@ -45,6 +45,8 @@ namespace Academy
 						($"INSERT Students({student.GetNames()}) VALUES ({student.GetValues()});SELECT SCOPE_IDENTITY();"
 						));
 			else DataBase.Connector.Update($"UPDATE Students SET {student.GetUpdateString()} WHERE stud_id={student.id}");
+			if (pictureBoxPhoto.Image != null)
+				DataBase.Connector.UploadPhoto(student.SerializePhoto(), student.id, "photo", "Students");
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 using System.Drawing;
 
 namespace Academy.Models
@@ -80,6 +80,15 @@ namespace Academy.Models
 					$"birth_date = N'{birth_date}'," +
 					$"email = N'{email}'," +
 					$"phone = N'{phone}'";
+		}
+		public byte[] SerializePhoto()
+		{
+			using (MemoryStream ms = new MemoryStream())
+			{
+				photo.Save(ms, photo.RawFormat);
+				return ms.ToArray();
+			}	
+
 		}
 	}
 }
