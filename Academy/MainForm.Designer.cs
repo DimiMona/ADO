@@ -40,6 +40,7 @@
 			this.tabPageDisciplines = new System.Windows.Forms.TabPage();
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
+			this.buttonAddTeache = new System.Windows.Forms.Button();
 			this.dgvTeachers = new System.Windows.Forms.DataGridView();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
@@ -182,6 +183,7 @@
 			// 
 			// tabPageTeachers
 			// 
+			this.tabPageTeachers.Controls.Add(this.buttonAddTeache);
 			this.tabPageTeachers.Controls.Add(this.dgvTeachers);
 			this.tabPageTeachers.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTeachers.Name = "tabPageTeachers";
@@ -191,16 +193,29 @@
 			this.tabPageTeachers.Text = "Teachers";
 			this.tabPageTeachers.UseVisualStyleBackColor = true;
 			// 
+			// buttonAddTeache
+			// 
+			this.buttonAddTeache.Location = new System.Drawing.Point(687, 3);
+			this.buttonAddTeache.Name = "buttonAddTeache";
+			this.buttonAddTeache.Size = new System.Drawing.Size(98, 28);
+			this.buttonAddTeache.TabIndex = 3;
+			this.buttonAddTeache.Text = "Добавить";
+			this.buttonAddTeache.UseVisualStyleBackColor = true;
+			this.buttonAddTeache.Click += new System.EventHandler(this.buttonAddTeacher_Click);
+			// 
 			// dgvTeachers
 			// 
 			this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvTeachers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvTeachers.Location = new System.Drawing.Point(3, 15);
+			this.dgvTeachers.Location = new System.Drawing.Point(3, 33);
+			this.dgvTeachers.MultiSelect = false;
 			this.dgvTeachers.Name = "dgvTeachers";
-			this.dgvTeachers.Size = new System.Drawing.Size(786, 366);
+			this.dgvTeachers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvTeachers.Size = new System.Drawing.Size(786, 348);
 			this.dgvTeachers.TabIndex = 1;
+			this.dgvTeachers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTeachers_CellMouseDoubleClick);
 			// 
 			// MainForm
 			// 
@@ -242,6 +257,7 @@
 		private System.Windows.Forms.DataGridView dgvDisciplines;
 		private System.Windows.Forms.DataGridView dgvTeachers;
 		private System.Windows.Forms.Button buttonAddStudents;
+		private System.Windows.Forms.Button buttonAddTeache;
 	}
 }
 

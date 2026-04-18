@@ -48,5 +48,20 @@ namespace Academy
 			int i = (sender as TabControl).SelectedIndex;
 			tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
 		}
+
+		private void buttonAddTeacher_Click(object sender, EventArgs e)
+		{
+			TeacherForm teacher = new TeacherForm();
+			//teacher.ShowDialog();
+			if (teacher.ShowDialog() == DialogResult.OK) tabControl_SelectedIndexChanged(tabControl, null);
+		}
+
+		private void dgvTeachers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			int id = Convert.ToInt32(dgvTeachers.Rows[e.RowIndex].Cells[0].Value);
+			TeacherForm teacher = new TeacherForm(id);
+			//teacher.ShowDialog();
+			if (teacher.ShowDialog() == DialogResult.OK) tabControl_SelectedIndexChanged(tabControl, null);
+		}
 	}
 }

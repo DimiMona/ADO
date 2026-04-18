@@ -33,8 +33,14 @@ namespace Academy.Models
 
 		public Teacher(object[] values) : base(values)
 		{
-			this.work_since = work_since[8].ToString();
-			this.rate = Convert.ToDecimal(values[9].ToString());
+			// Проверяем на DBNull.Value
+			this.work_since = values.Length > 8 && values[8] != DBNull.Value
+				? values[8].ToString()
+				: "";  // Пустая строка вместо null
+
+			this.rate = values.Length > 9 && values[9] != DBNull.Value
+				? Convert.ToDecimal(values[9])
+				: 0;  // 0 вместо null
 
 		}
 
