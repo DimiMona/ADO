@@ -43,14 +43,14 @@ namespace Academy
 		}
 		protected override void buttonOk_Click(object sender, EventArgs e)
 		{
-			decimal rate = 0;
+			decimal rate = Convert.ToDecimal(textBoxRate.Text);
 			base.buttonOk_Click(sender, e);
 			teacher = new Models.Teacher(human, dtpWorkSince.Value.ToString("yyyy-MM-dd"),rate);
 			if (teacher.id == 0) teacher.id =
 						Convert.ToInt32(DataBase.Connector.Scalar
-						($"INSERT Students({teacher.GetNames()}) VALUES ({teacher.GetValues()});SELECT SCOPE_IDENTITY();"
+						($"INSERT Teachers({teacher.GetNames()}) VALUES ({teacher.GetValues()});SELECT SCOPE_IDENTITY();"
 						));
-			else DataBase.Connector.Update($"UPDATE Students SET {teacher.GetUpdateString()} WHERE stud_id={teacher.id}");
+			else DataBase.Connector.Update($"UPDATE Teachers SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
 		}
 
 	}
