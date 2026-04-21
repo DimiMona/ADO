@@ -26,6 +26,7 @@ namespace Academy
 		{
 			DataTable table = DataBase.Connector.Select($"SELECT * FROM Students WHERE Stud_id = {id}");
 			student = new Models.Student(table.Rows[0].ItemArray);
+			student.photo = DataBase.Connector.DownloadPhoto(id, "Students", "photo");
 			human = student;
 			Extract();
 		}
