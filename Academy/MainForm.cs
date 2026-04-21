@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using DBtools;
+using System.Runtime.InteropServices;
 
 namespace Academy
 {
@@ -18,7 +19,9 @@ namespace Academy
 		DataGridView[] tables;
 		public MainForm()
 		{
+			AllocConsole();
 			InitializeComponent();
+			
 			connector = new Connector(ConfigurationManager.ConnectionStrings["PV_522_Import"].ConnectionString);
 			dgvDirections.DataSource = connector.Select("SELECT * FROM Directions");
 			dgvStudents.DataSource = connector.Select("SELECT * FROM Students");
@@ -28,6 +31,8 @@ namespace Academy
 			
 			tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers};
 		}
+		[DllImport("kernel32.dll")]
+		public static extern bool AllocConsole();
 
 		private void buttonAddStudents_Click(object sender, EventArgs e)
 		{
